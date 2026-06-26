@@ -16,21 +16,26 @@ const AdminLogin = () => {
     e.preventDefault();
     setLoading(true);
 
-    let email = username;
+    // Verify TTT credentials + sync Supabase Auth password
+    const { data, error: fnError } = await supabase.functions.invoke('cb-admin-login', {
+      body: { username, password },
+    });
 
-    if (!username.includes("@")) {
-      const { data, error: rpcError } = await supabase.rpc("get_email_by_username", {
-        p_username: username,
+    if (fnError || !data?.email) {
+      toast({
+        title: "Error",
+        description: data?.error || "Invalid username or password.",
+        variant: "destructive",
       });
-      if (rpcError || !data) {
-        toast({ title: "Error", description: "Username not found.", variant: "destructive" });
-        setLoading(false);
-        return;
-      }
-      email = data;
+      setLoading(false);
+      return;
     }
 
-    const { error } = await supabase.auth.signInWithPassword({ email, password });
+    // Sign in with the synced Supabase Auth credentials
+    const { error } = await supabase.auth.signInWithPassword({
+      email: data.email,
+      password,
+    });
 
     if (error) {
       toast({ title: "Error", description: error.message, variant: "destructive" });
