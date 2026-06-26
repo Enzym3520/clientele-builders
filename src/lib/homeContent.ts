@@ -157,7 +157,7 @@ export const DEFAULT_HOME_CONTENT: HomeContent = {
 
 export async function fetchPublishedHomeContent(): Promise<HomeContent | null> {
   const { data, error } = await supabase
-    .from("home_content" as never)
+    .from("cb_home_content" as never)
     .select("content")
     .eq("is_published", true)
     .order("updated_at", { ascending: false })
@@ -169,7 +169,7 @@ export async function fetchPublishedHomeContent(): Promise<HomeContent | null> {
 
 export async function fetchLatestHomeContent(): Promise<{ id: string; content: HomeContent; is_published: boolean } | null> {
   const { data, error } = await supabase
-    .from("home_content" as never)
+    .from("cb_home_content" as never)
     .select("id, content, is_published")
     .order("updated_at", { ascending: false })
     .limit(1)

@@ -63,12 +63,12 @@ const AdminPostEditor = () => {
 
   useEffect(() => {
     if (isAuthorized) {
-      supabase.from("categories").select("id, name").order("name").then(({ data }) => {
+      supabase.from("cb_categories").select("id, name").order("name").then(({ data }) => {
         if (data) setCategories(data);
       });
     }
     if (id && isAuthorized) {
-      supabase.from("posts").select("*").eq("id", id).single()
+      supabase.from("cb_posts").select("*").eq("id", id).single()
         .then(({ data }) => data && setPost({
           title: data.title ?? "",
           slug: data.slug ?? "",
@@ -101,8 +101,8 @@ const AdminPostEditor = () => {
 
     setLoading(true);
     const { error } = id
-      ? await supabase.from("posts").update(post).eq("id", id)
-      : await supabase.from("posts").insert([{ ...post, publish_date: new Date().toISOString() }]);
+      ? await supabase.from("cb_posts").update(post).eq("id", id)
+      : await supabase.from("cb_posts").insert([{ ...post, publish_date: new Date().toISOString() }]);
 
     if (error) {
       toast({ title: "Error", description: error.message, variant: "destructive" });

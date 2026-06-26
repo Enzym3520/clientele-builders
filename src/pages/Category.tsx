@@ -12,9 +12,9 @@ const Category = () => {
   const { data, isLoading } = useQuery({
     queryKey: ["category-posts", slug],
     queryFn: async () => {
-      const { data: cat, error: catErr } = await supabase.from("categories").select("*").eq("slug", slug as string).single();
+      const { data: cat, error: catErr } = await supabase.from("cb_categories").select("*").eq("slug", slug as string).single();
       if (catErr) throw catErr;
-      const { data: posts, error: postsErr } = await supabase.from("posts").select("*").eq("category_id", cat.id).eq("is_published", true).order("publish_date", { ascending: false });
+      const { data: posts, error: postsErr } = await supabase.from("cb_posts").select("*").eq("category_id", cat.id).eq("is_published", true).order("publish_date", { ascending: false });
       if (postsErr) throw postsErr;
       return { category: cat, posts: posts || [] };
     },

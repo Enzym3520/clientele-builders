@@ -66,18 +66,18 @@ async function prerender() {
   // Fetch dynamic routes from Supabase
   console.log('Fetching blog posts...');
   const { data: posts } = await supabase
-    .from('posts')
+    .from('cb_posts')
     .select('slug, title')
     .eq('is_published', true);
 
   console.log('Fetching tags...');
   const { data: tags } = await supabase
-    .from('tags')
+    .from('cb_tags')
     .select('slug, name');
 
   console.log('Fetching categories...');
   const { data: categories } = await supabase
-    .from('categories')
+    .from('cb_categories')
     .select('slug, name');
 
   // Build dynamic routes

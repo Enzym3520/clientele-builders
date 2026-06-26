@@ -74,7 +74,7 @@ const AdminHomepage = () => {
       updated_at: new Date().toISOString(),
     };
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    const tbl = (supabase as any).from("home_content");
+    const tbl = (supabase as any).from("cb_home_content");
     let error;
     if (rowId) {
       ({ error } = await tbl.update(payload).eq("id", rowId));

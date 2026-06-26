@@ -49,7 +49,7 @@ const AdminPosts = () => {
     queryKey: ["admin-posts"],
     queryFn: async () => {
       const { data, error } = await supabase
-        .from("posts")
+        .from("cb_posts")
         .select("*")
         .order("created_at", { ascending: false });
       if (error) throw error;
