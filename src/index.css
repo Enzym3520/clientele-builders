@@ -1,0 +1,97 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
+All colors MUST be HSL.
+*/
+
+@layer base {
+  :root {
+    /* Insurance Distribution Architect — Editorial Newsroom Theme */
+    --background: 43 33% 97%;       /* #FAF8F4 cream */
+    --foreground: 210 35% 17%;      /* #1C2B3A dark text */
+
+    --card: 0 0% 100%;              /* #FFFFFF */
+    --card-foreground: 210 35% 17%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 210 35% 17%;
+
+    --primary: 207 65% 15%;         /* #0D1B2A navy */
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 210 20% 96%;       /* light fog */
+    --secondary-foreground: 210 35% 17%;
+
+    --muted: 210 30% 95%;           /* #EAF1F8 fog */
+    --muted-foreground: 210 15% 42%; /* #5A6A7A */
+
+    --accent: 37 66% 47%;           /* #C8972A gold */
+    --accent-foreground: 0 0% 100%;
+
+    --destructive: 0 60% 40%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 210 30% 88%;          /* #D4E0EC rule */
+    --input: 210 30% 88%;
+    --ring: 207 65% 15%;
+
+    --radius: 0.25rem;
+
+    /* Transitions */
+    --transition-base: 200ms cubic-bezier(0.4, 0, 0.2, 1);
+
+    /* Shadows */
+    --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.04);
+    --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.06);
+    --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.06);
+
+    /* Extended palette for direct use */
+    --navy: 207 65% 15%;
+    --ink: 213 35% 15%;
+    --slate: 210 32% 26%;
+    --steel: 215 37% 46%;
+    --sky: 207 38% 59%;
+    --fog: 210 50% 94%;
+    --gold: 37 66% 47%;
+    --gold-light: 42 77% 72%;
+    --cream: 43 33% 97%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  html {
+    @apply antialiased;
+    font-feature-settings: "kern" 1;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    overflow-x: hidden;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    font-family: 'DM Sans', system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+    overflow-x: hidden;
+    -webkit-text-size-adjust: 100%;
+  }
+
+  /* Mobile: prevent wide media/tables/svgs from forcing page-level scroll */
+  @media (max-width: 760px) {
+    img, svg, video, canvas, iframe { max-width: 100%; height: auto; }
+    table { display: block; max-width: 100%; overflow-x: auto; -webkit-overflow-scrolling: touch; }
+    pre, code { max-width: 100%; overflow-x: auto; word-wrap: break-word; }
+  }
+
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    color: hsl(var(--navy));
+  }
+}
