@@ -3,7 +3,6 @@ import { useNavigate, Link } from "react-router-dom";
 import { supabase } from "@/integrations/supabase/client";
 import { Button } from "@/components/ui/button";
 import { useToast } from "@/hooks/use-toast";
-import logo from "@/assets/logo.svg";
 
 const AdminDashboard = () => {
   const navigate = useNavigate();
@@ -19,7 +18,6 @@ const AdminDashboard = () => {
         return;
       }
       
-      // Query user_roles table for admin/editor privileges
       const { data: roles } = await supabase
         .from('user_roles')
         .select('role')
@@ -59,7 +57,7 @@ const AdminDashboard = () => {
     <div className="min-h-screen bg-background">
       <header className="border-b border-border px-6 py-4">
         <div className="flex items-center justify-between">
-          <img src={logo} alt="Clientele Builder" className="h-8 w-auto" />
+          <div className="text-lg font-bold tracking-tight">Clientele Builders</div>
           <Button onClick={() => supabase.auth.signOut()} variant="outline">
             Logout
           </Button>

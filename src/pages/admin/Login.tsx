@@ -4,7 +4,6 @@ import { supabase } from "@/integrations/supabase/client";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { useToast } from "@/hooks/use-toast";
-import logo from "@/assets/logo.jpg";
 
 const AdminLogin = () => {
   const [email, setEmail] = useState("");
@@ -31,7 +30,7 @@ const AdminLogin = () => {
     <div className="min-h-screen flex items-center justify-center bg-background px-6">
       <div className="w-full max-w-md">
         <div className="text-center mb-8">
-          <img src={logo} alt="Clientele Builder" className="h-12 w-auto mx-auto mb-6" />
+          <div className="text-2xl font-bold tracking-tight mb-6">Clientele Builders</div>
           <h1 className="text-3xl font-semibold">Admin Login</h1>
           <p className="text-sm text-muted-foreground mt-2">
             Accounts are created by invitation only.
