@@ -11,13 +11,13 @@ const Tag = () => {
   const { data: posts, isLoading } = useQuery({
     queryKey: ["tag-posts", tag],
     queryFn: async () => {
-      const { data: tagData, error: tagError } = await supabase.from("tags").select("*").eq("slug", tag).single();
+      const { data: tagData, error: tagError } = await supabase.from("cb_tags").select("*").eq("slug", tag).single();
       if (tagError) throw tagError;
-      const { data: postTags, error: postTagsError } = await supabase.from("post_tags").select(`posts(*)`).eq("tag_id", tagData.id);
+      const { data: postTags, error: postTagsError } = await supabase.from("cb_post_tags").select(`cb_posts(*)`).eq("tag_id", tagData.id);
       if (postTagsError) throw postTagsError;
       return {
         tag: tagData,
-        posts: postTags.map((pt: any) => pt.posts).filter((post: any) => post.is_published).sort((a: any, b: any) => new Date(b.publish_date).getTime() - new Date(a.publish_date).getTime()),
+        posts: postTags.map((pt: any) => pt.cb_posts).filter((post: any) => post && post.is_published).sort((a: any, b: any) => new Date(b.publish_date).getTime() - new Date(a.publish_date).getTime()),
       };
     },
   });

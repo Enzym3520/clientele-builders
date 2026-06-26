@@ -54,8 +54,8 @@ const Intelligence = () => {
     queryKey: ["intelligence-posts"],
     queryFn: async () => {
       const { data, error } = await supabase
-        .from("posts")
-        .select(`*, post_tags(tags(name, slug)), categories(name, slug)`)
+        .from("cb_posts")
+        .select(`*, cb_post_tags(cb_tags(name, slug)), cb_categories(name, slug)`)
         .eq("is_published", true)
         .order("publish_date", { ascending: false });
       if (error) throw error;
@@ -63,12 +63,12 @@ const Intelligence = () => {
     },
   });
 
-  const featuredPost = posts.find((p) => p.is_featured) || posts[0];
-  const gridPosts = posts.filter((p) => p.id !== featuredPost?.id);
+  const featuredPost = posts.find((p: any) => p.is_featured) || posts[0];
+  const gridPosts = posts.filter((p: any) => p.id !== featuredPost?.id);
   const filteredPosts =
     activeCategory === "all"
       ? gridPosts
-      : gridPosts.filter((p) => p.post_tags?.some((pt: any) => pt.tags?.slug === activeCategory));
+      : gridPosts.filter((p: any) => p.cb_post_tags?.some((pt: any) => pt.cb_tags?.slug === activeCategory));
 
   return (
     <div className="min-h-screen bg-primary">
@@ -150,10 +150,10 @@ const Intelligence = () => {
             <span className="font-mono text-[9px] tracking-[0.22em] text-accent uppercase block mb-10">Featured Insight</span>
             <Link to={`/story/${featuredPost.slug}`} className="group block border border-white/[0.06] p-10 md:p-16 hover:border-accent/20 transition-colors relative overflow-hidden">
               <div className="absolute top-0 left-0 right-0 h-[2px] bg-accent scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left" />
-              {featuredPost.categories ? (
-                <Link to={`/category/${featuredPost.categories.slug}`} onClick={(e) => e.stopPropagation()} className="font-mono text-[9px] tracking-[0.18em] text-accent uppercase hover:text-gold-light transition-colors relative z-10">{featuredPost.categories.name}</Link>
-              ) : featuredPost.post_tags?.[0]?.tags && (
-                <span className="font-mono text-[9px] tracking-[0.18em] text-accent uppercase">{featuredPost.post_tags[0].tags.name}</span>
+              {featuredPost.cb_categories ? (
+                <Link to={`/category/${featuredPost.cb_categories.slug}`} onClick={(e) => e.stopPropagation()} className="font-mono text-[9px] tracking-[0.18em] text-accent uppercase hover:text-gold-light transition-colors relative z-10">{featuredPost.cb_categories.name}</Link>
+              ) : featuredPost.cb_post_tags?.[0]?.cb_tags && (
+                <span className="font-mono text-[9px] tracking-[0.18em] text-accent uppercase">{featuredPost.cb_post_tags[0].cb_tags.name}</span>
               )}
               <h2 className="font-serif text-3xl md:text-4xl lg:text-5xl font-black text-white leading-[1.08] tracking-tight mt-4 mb-6 max-w-3xl group-hover:text-gold-light transition-colors" style={{ textWrap: "balance" } as React.CSSProperties}>{featuredPost.title}</h2>
               {featuredPost.dek && <p className="text-white/40 text-lg font-light leading-relaxed mb-10 max-w-2xl">{featuredPost.dek}</p>}
@@ -204,12 +204,12 @@ const Intelligence = () => {
         ) : (
           <div>
             <div className="grid md:grid-cols-3 gap-x-8 gap-y-14">
-              {filteredPosts.slice(0, 6).map((post) => <ArticleCard key={post.id} post={post} />)}
+              {filteredPosts.slice(0, 6).map((post: any) => <ArticleCard key={post.id} post={post} />)}
             </div>
             {filteredPosts.length > 4 && <InlineCTA />}
             {filteredPosts.length > 6 && (
               <div className="grid md:grid-cols-3 gap-x-8 gap-y-14 mt-14">
-                {filteredPosts.slice(6).map((post) => <ArticleCard key={post.id} post={post} />)}
+                {filteredPosts.slice(6).map((post: any) => <ArticleCard key={post.id} post={post} />)}
               </div>
             )}
           </div>
@@ -315,8 +315,8 @@ const InlineCTA = forwardRef<HTMLDivElement>((_, ref) => (
 InlineCTA.displayName = "InlineCTA";
 
 const ArticleCard = ({ post }: { post: any }) => {
-  const category = post.categories;
-  const tag = post.post_tags?.[0]?.tags;
+  const category = post.cb_categories;
+  const tag = post.cb_post_tags?.[0]?.cb_tags;
   const pdfUrl = INFOGRAPHIC_PDF_MAP[post.slug];
   return (
     <article className="group">
