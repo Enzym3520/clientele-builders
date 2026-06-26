@@ -1,4 +1,4 @@
-/* Scoped styles for HomeLeak page */
+/* Scoped styles for HomeLeak page — ported from homepage static export */
 .hp-leak {
   --navy:     #0D1B2A;
   --ink-2:    #1A2535;
@@ -9,22 +9,28 @@
   --gold:     #C8972A;
   --gold-lt:  #F0D080;
   --cream:    #FAF8F4;
+
   --text-primary:   #1C2B3A;
   --text-secondary: #5A6A7A;
   --text-muted:     #7A8896;
   --text-on-dark:   #FFFFFF;
   --text-on-dark-muted: rgba(255,255,255,0.55);
+
   --surface-page:   var(--cream);
   --surface-card:   #FFFFFF;
   --surface-ink:    var(--navy);
+
   --border-default: #D4E0EC;
   --border-on-dark: rgba(255,255,255,0.14);
+
   --font-display: 'Playfair Display', Georgia, serif;
   --font-sans:    'DM Sans', system-ui, -apple-system, 'Segoe UI', sans-serif;
   --font-mono:    'DM Mono', 'IBM Plex Mono', monospace;
+
   --tracking-tight: -0.01em;
   --tracking-tighter: -0.02em;
   --tracking-label: 0.12em;
+
   background: var(--surface-page);
   font-family: var(--font-sans);
   -webkit-font-smoothing: antialiased;
@@ -33,6 +39,7 @@
 
 .hp-leak * { box-sizing: border-box; }
 .hp-leak a { color: inherit; }
+
 .hp-leak .container { max-width: 1080px; margin: 0 auto; padding-left: 24px; padding-right: 24px; }
 .hp-leak .section { padding-top: 88px; padding-bottom: 88px; }
 
@@ -77,6 +84,14 @@
   letter-spacing: var(--tracking-tight); color: var(--text-primary); margin: 0 0 6px;
 }
 .hp-leak .card p { font-size: 14px; line-height: 1.5; color: var(--text-secondary); margin: 0; }
+
+.hp-leak .why-q {
+  width: 100%; padding: 22px 0;
+  border-top: 1px solid var(--border-default); border-bottom: 1px solid var(--border-default);
+  font-family: var(--font-display); font-weight: 500; font-size: 22px;
+  letter-spacing: var(--tracking-tight); color: var(--text-primary); text-align: center;
+}
+.hp-leak .why-q + .why-q { border-top: none; }
 
 .hp-leak .badge {
   display: inline-flex; align-items: center; gap: 8px;
@@ -147,6 +162,11 @@
 @media (max-width: 600px) {
   .hp-leak .diag-grid { grid-template-columns: 1fr; }
   .hp-leak .section { padding-top: 64px; padding-bottom: 64px; }
-  .hp-leak .btn-gold { padding: 14px 22px; font-size: 11px; letter-spacing: 0.08em; white-space: nowrap; }
+  .hp-leak .btn-gold {
+    padding: 14px 22px;
+    font-size: 11px;
+    letter-spacing: 0.08em;
+    white-space: nowrap;
+  }
   .hp-leak .nav-cta { padding: 10px 16px; font-size: 10px; }
 }
