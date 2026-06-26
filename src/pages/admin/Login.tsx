@@ -16,7 +16,6 @@ const AdminLogin = () => {
     e.preventDefault();
     setLoading(true);
 
-    // Verify TTT credentials + sync Supabase Auth password
     const { data, error: fnError } = await supabase.functions.invoke('cb-admin-login', {
       body: { username, password },
     });
@@ -31,7 +30,6 @@ const AdminLogin = () => {
       return;
     }
 
-    // Sign in with the synced Supabase Auth credentials
     const { error } = await supabase.auth.signInWithPassword({
       email: data.email,
       password,
@@ -66,6 +64,8 @@ const AdminLogin = () => {
             className="bg-card border-border"
             autoCapitalize="none"
             autoCorrect="off"
+            autoComplete="username"
+            name="username"
           />
           <Input
             type="password"
@@ -74,6 +74,8 @@ const AdminLogin = () => {
             onChange={(e) => setPassword(e.target.value)}
             required
             className="bg-card border-border"
+            autoComplete="current-password"
+            name="password"
           />
           <Button type="submit" disabled={loading} className="w-full bg-primary hover:bg-primary/90">
             {loading ? "Logging in..." : "Login"}
