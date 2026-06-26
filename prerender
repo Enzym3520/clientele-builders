@@ -1,0 +1,10 @@
+#!/usr/bin/env node
+(async () => {
+  try {
+    // Wrapper to reliably execute ESM prerender.js from a CommonJS runner
+    await import('./prerender.js');
+  } catch (err) {
+    console.error('Failed to execute prerender.js:', err);
+    process.exit(1);
+  }
+})();
