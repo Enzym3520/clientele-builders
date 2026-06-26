@@ -7,7 +7,7 @@ const RSS = () => {
     queryKey: ["rss-posts"],
     queryFn: async () => {
       const { data, error } = await supabase
-        .from("posts")
+        .from("cb_posts")
         .select("*")
         .eq("is_published", true)
         .order("publish_date", { ascending: false })

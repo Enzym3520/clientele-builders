@@ -26,7 +26,7 @@ async function generateSitemap() {
   try {
     // Fetch all published posts
     const { data: posts, error } = await supabase
-      .from('posts')
+      .from('cb_posts')
       .select('slug, updated_at, publish_date')
       .eq('is_published', true)
       .order('publish_date', { ascending: false });
