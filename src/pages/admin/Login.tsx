@@ -6,7 +6,7 @@ import { Input } from "@/components/ui/input";
 import { useToast } from "@/hooks/use-toast";
 
 const AdminLogin = () => {
-  const [email, setEmail] = useState("");
+  const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
@@ -15,6 +15,20 @@ const AdminLogin = () => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setLoading(true);
+
+    let email = username;
+
+    if (!username.includes("@")) {
+      const { data, error: rpcError } = await supabase.rpc("get_email_by_username", {
+        p_username: username,
+      });
+      if (rpcError || !data) {
+        toast({ title: "Error", description: "Username not found.", variant: "destructive" });
+        setLoading(false);
+        return;
+      }
+      email = data;
+    }
 
     const { error } = await supabase.auth.signInWithPassword({ email, password });
 
@@ -39,12 +53,14 @@ const AdminLogin = () => {
 
         <form onSubmit={handleSubmit} className="space-y-4">
           <Input
-            type="email"
-            placeholder="Email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
+            type="text"
+            placeholder="Username"
+            value={username}
+            onChange={(e) => setUsername(e.target.value)}
             required
             className="bg-card border-border"
+            autoCapitalize="none"
+            autoCorrect="off"
           />
           <Input
             type="password"
