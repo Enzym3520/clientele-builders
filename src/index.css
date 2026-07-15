@@ -57,6 +57,21 @@ All colors MUST be HSL.
     --gold: 37 66% 47%;
     --gold-light: 42 77% 72%;
     --cream: 43 33% 97%;
+
+    /* CB Diagnostic Design System */
+    --cb-navy-950: #06111d;
+    --cb-navy-900: #0a1928;
+    --cb-navy-850: #0d2235;
+    --cb-navy-800: #102b43;
+    --cb-blueprint: #123b62;
+    --cb-blueprint-light: #1d527f;
+    --cb-gold: #d39a22;
+    --cb-gold-light: #e3b64f;
+    --cb-gold-dark: #a87111;
+    --cb-white: #f7f5ef;
+    --cb-paper: #e8e5dc;
+    --cb-muted: #9eabb8;
+    --cb-line: rgba(220, 232, 240, 0.18);
   }
 }
 
@@ -93,5 +108,32 @@ All colors MUST be HSL.
     font-weight: 700;
     letter-spacing: -0.02em;
     color: hsl(var(--navy));
+  }
+}
+
+@layer utilities {
+  /* 5° forward lean on main display headings — matches CB monogram skewX(-5) */
+  .cb-headline {
+    display: inline-block;
+    transform: skewX(-5deg);
+  }
+
+  /* Blueprint corner bracket — place on relative-positioned containers */
+  .bp-corner-tl::before,
+  .bp-corner-br::after {
+    content: '';
+    position: absolute;
+    width: 16px;
+    height: 16px;
+    border-color: rgba(211,154,34,0.35);
+    border-style: solid;
+  }
+  .bp-corner-tl::before {
+    top: 12px; left: 12px;
+    border-width: 1px 0 0 1px;
+  }
+  .bp-corner-br::after {
+    bottom: 12px; right: 12px;
+    border-width: 0 1px 1px 0;
   }
 }
