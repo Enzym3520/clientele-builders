@@ -34,6 +34,7 @@ const EditorialBrief = lazy(() => import("./pages/EditorialBrief"));
 const MarketCapture = lazy(() => import("./pages/MarketCapture"));
 const LifeInsurance = lazy(() => import("./pages/LifeInsurance"));
 const NotFound = lazy(() => import("./pages/NotFound"));
+const DistributionLeakResults = lazy(() => import("./pages/DistributionLeakResults"));
 
 const App = () => (
   <TooltipProvider>
@@ -51,6 +52,7 @@ const App = () => (
         <Route path="/tag/:tag" element={<Tag />} />
         <Route path="/category/:slug" element={<Category />} />
         <Route path="/scorecard" element={<Scorecard />} />
+        <Route path="/distribution-leak-results" element={<DistributionLeakResults />} />
         <Route path="/reports" element={<Reports />} />
         <Route path="/reports/agent-production" element={<AgentProduction />} />
         <Route path="/reports/agent-production/briefs" element={<AgentProductionBriefs />} />
