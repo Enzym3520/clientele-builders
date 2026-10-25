@@ -36,7 +36,7 @@ async function generateSitemap() {
       process.exit(1);
     }
 
-    const baseUrl = 'https://clientelebuilders.com';
+    const baseUrl = 'https://www.clientelebuilders.com';
     const currentDate = new Date().toISOString();
 
     // Build sitemap XML
@@ -45,11 +45,23 @@ async function generateSitemap() {
 
     // Static pages
     const staticPages = [
-      { loc: '/', priority: '1.0', changefreq: 'daily' },
-      { loc: '/blog', priority: '0.9', changefreq: 'daily' },
-      { loc: '/about', priority: '0.8', changefreq: 'monthly' },
-      { loc: '/newsletter', priority: '0.8', changefreq: 'monthly' },
-      { loc: '/contact', priority: '0.7', changefreq: 'monthly' },
+      { loc: '/', priority: '1.0', changefreq: 'weekly' },
+      { loc: '/about', priority: '0.8', changefreq: 'weekly' },
+      { loc: '/contact', priority: '0.8', changefreq: 'weekly' },
+      { loc: '/intelligence', priority: '0.8', changefreq: 'weekly' },
+      { loc: '/consulting', priority: '0.7', changefreq: 'weekly' },
+      { loc: '/frameworks', priority: '0.7', changefreq: 'weekly' },
+      { loc: '/lifeinsurance', priority: '0.7', changefreq: 'monthly' },
+      { loc: '/newsletter', priority: '0.7', changefreq: 'weekly' },
+      { loc: '/reports', priority: '0.7', changefreq: 'weekly' },
+      { loc: '/reports/agent-production', priority: '0.7', changefreq: 'weekly' },
+      { loc: '/reports/agent-production/briefs', priority: '0.7', changefreq: 'weekly' },
+      { loc: '/scorecard', priority: '0.7', changefreq: 'weekly' },
+      { loc: '/insights/recruiting-difficulty', priority: '0.6', changefreq: 'monthly' },
+      { loc: '/insights/demand-technology-buyer', priority: '0.6', changefreq: 'monthly' },
+      { loc: '/insights/market-capture', priority: '0.6', changefreq: 'monthly' },
+      { loc: '/privacy', priority: '0.4', changefreq: 'monthly' },
+      { loc: '/terms', priority: '0.4', changefreq: 'monthly' },
     ];
 
     staticPages.forEach(page => {

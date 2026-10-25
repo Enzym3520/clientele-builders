@@ -2,4 +2,4 @@ User-agent: *
 Allow: /
 Disallow: /admin/
 
-Sitemap: https://clientelebuilders.com/sitemap.xml
+Sitemap: https://www.clientelebuilders.com/sitemap.xml
