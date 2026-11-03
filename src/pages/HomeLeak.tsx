@@ -9,6 +9,17 @@ import {
 } from "@/lib/homeContent";
 import "./home-leak.css";
 
+const DIAGNOSE_DETAILS: Record<string, string> = {
+  Recruiting: "Are the people you bring in a good fit? We look at where strong candidates come from and where they stop moving forward.",
+  Onboarding: "What happens after an agent says yes? We look at the first steps, who owns them, and whether new agents reach their first sale.",
+  Marketing: "Do agents and customers trust what they find before they talk to you? We look at the message, the proof, and the path to a conversation.",
+  "Sales Process": "Where does a good conversation stall? We look at the steps from first contact to a submitted policy and where people get stuck.",
+  Persistency: "Do policies stay in force after the sale? We look at lapses and the early signs that long-term income may be at risk.",
+  Compensation: "Does the way you pay people reward the work that matters? We look at whether incentives support production that lasts.",
+  Leadership: "Can your next leaders help agents grow without everything running through you? We look at coaching, ownership, and who is ready to lead.",
+  "Technology & Data": "Can you follow an agent's progress from recruiting to production? We look at what each tool shows and where information gets lost between them.",
+};
+
 const HomeLeak = () => {
   const { data } = useQuery({
     queryKey: ["home-content-published"],
@@ -65,13 +76,17 @@ const HomeLeak = () => {
               {c.diagnose.cards.map((card, i) => {
                 const Icon = HOME_ICONS[card.icon] ?? HOME_ICONS.Activity;
                 return (
-                  <a key={`${card.title}-${i}`} className="card" href="#assess">
-                    <span className="icon" style={{ marginBottom: 16, display: "block" }}>
-                      <Icon size={22} strokeWidth={2} />
-                    </span>
-                    <h3>{card.title}</h3>
-                    <p>{card.body}</p>
-                  </a>
+                  <details key={`${card.title}-${i}`} className="card diag-card">
+                    <summary className="diag-card-summary">
+                      <span className="icon" style={{ marginBottom: 16, display: "block" }} aria-hidden="true">
+                        <Icon size={22} strokeWidth={2} />
+                      </span>
+                      <span className="diag-card-title">{card.title}</span>
+                      <span className="diag-card-chevron" aria-hidden="true" />
+                      <span className="diag-card-intro">{card.body}</span>
+                    </summary>
+                    <p className="diag-card-detail">{DIAGNOSE_DETAILS[card.title] ?? card.body}</p>
+                  </details>
                 );
               })}
             </div>

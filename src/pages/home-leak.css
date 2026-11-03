@@ -84,6 +84,33 @@
   letter-spacing: var(--tracking-tight); color: var(--text-primary); margin: 0 0 6px;
 }
 .hp-leak .card p { font-size: 14px; line-height: 1.5; color: var(--text-secondary); margin: 0; }
+.hp-leak .diag-card { align-self: start; }
+.hp-leak .diag-card-summary { display: block; position: relative; cursor: pointer; list-style: none; }
+.hp-leak .diag-card-summary::-webkit-details-marker { display: none; }
+.hp-leak .diag-card-summary::marker { content: ""; }
+.hp-leak .diag-card-summary:focus-visible { outline: 2px solid var(--steel); outline-offset: 7px; border-radius: 4px; }
+.hp-leak .diag-card-title {
+  display: block; padding-right: 22px; margin: 0 0 6px;
+  font-family: var(--font-display); font-size: 18px; font-weight: 500;
+  letter-spacing: var(--tracking-tight); color: var(--text-primary);
+}
+.hp-leak .diag-card-chevron {
+  position: absolute; right: 0; top: 72px; width: 8px; height: 8px;
+  border-right: 1.5px solid var(--text-muted); border-bottom: 1.5px solid var(--text-muted);
+  transform: rotate(45deg); transition: transform 0.2s ease;
+}
+.hp-leak .diag-card[open] .diag-card-chevron { transform: rotate(225deg); }
+.hp-leak .diag-card-intro { display: block; font-size: 14px; line-height: 1.5; color: var(--text-secondary); }
+.hp-leak .diag-card-detail {
+  border-top: 1px solid var(--border-default); padding-top: 14px; margin-top: 16px !important;
+  animation: diag-reveal 0.2s ease-out both;
+}
+.hp-leak .diag-card[open] { border-color: var(--steel); }
+@keyframes diag-reveal { from { opacity: 0; transform: translateY(-5px); } to { opacity: 1; transform: translateY(0); } }
+@media (prefers-reduced-motion: reduce) {
+  .hp-leak .diag-card-detail { animation: none; }
+  .hp-leak .diag-card-chevron { transition: none; }
+}
 
 .hp-leak .why-q {
   width: 100%; padding: 22px 0;
