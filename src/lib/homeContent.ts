@@ -40,6 +40,11 @@ export const HOME_ICONS: Record<string, LucideIcon> = {
 
 export const HOME_ICON_NAMES = Object.keys(HOME_ICONS);
 
+export const ASSESSMENT_URL = "https://start.clientelebuilders.com/";
+
+// Older published homepage records still point at the internal scorecard route.
+export const assessmentHref = (href: string) => href === "/scorecard" ? ASSESSMENT_URL : href;
+
 export interface DiagnoseCard { icon: string; title: string; body: string; }
 export interface DataRow { label: string; value: number; accent: boolean; }
 
@@ -86,7 +91,7 @@ export interface HomeContent {
 }
 
 export const DEFAULT_HOME_CONTENT: HomeContent = {
-  nav: { wordmark: "Clientele Builders", cta_label: "Take the Assessment", cta_href: "/scorecard" },
+  nav: { wordmark: "Clientele Builders", cta_label: "Take the Assessment", cta_href: ASSESSMENT_URL },
   hero: {
     eyebrow: "Distribution Intelligence",
     headline: "Revenue leaks hide inside",
@@ -94,7 +99,7 @@ export const DEFAULT_HOME_CONTENT: HomeContent = {
     body: "Most life insurance organizations don't have a lead problem. They have recruiting, onboarding, activation, trust, sales, retention, or data leaks costing them revenue every month.",
     italic_line: "We show you where to look before it costs you.",
     cta_label: "Take the Distribution Leak Assessment",
-    cta_href: "/scorecard",
+    cta_href: ASSESSMENT_URL,
     meta: "Takes about 3 minutes",
   },
   diagnose: {
@@ -145,7 +150,7 @@ export const DEFAULT_HOME_CONTENT: HomeContent = {
     heading: "See where your system is leaking.",
     body: "Takes about 3 minutes for a prioritized diagnosis.",
     cta_label: "Take the Assessment",
-    cta_href: "/scorecard",
+    cta_href: ASSESSMENT_URL,
   },
   footer: {
     brand: "Clientele Builders",

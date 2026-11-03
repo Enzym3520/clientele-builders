@@ -4,6 +4,7 @@ import { useQuery } from "@tanstack/react-query";
 import {
   DEFAULT_HOME_CONTENT,
   HOME_ICONS,
+  assessmentHref,
   fetchPublishedHomeContent,
   type HomeContent,
 } from "@/lib/homeContent";
@@ -42,7 +43,7 @@ const HomeLeak = () => {
           <div className="container hp-nav-inner">
             <Link to="/" className="hp-wordmark">{c.nav.wordmark}</Link>
             <nav className="nav-links" />
-            <Link to={c.nav.cta_href} className="btn-gold nav-cta">{c.nav.cta_label}</Link>
+            <a href={assessmentHref(c.nav.cta_href)} className="btn-gold nav-cta">{c.nav.cta_label}</a>
           </div>
         </header>
 
@@ -57,9 +58,9 @@ const HomeLeak = () => {
             </h1>
             <p className="hero-p">{c.hero.body}</p>
             <p className="hero-italic">{c.hero.italic_line}</p>
-            <Link to={c.hero.cta_href} className="btn-gold">
+            <a href={assessmentHref(c.hero.cta_href)} className="btn-gold">
               {c.hero.cta_label} <span aria-hidden="true">→</span>
-            </Link>
+            </a>
             <p className="hero-meta">{c.hero.meta}</p>
           </div>
         </section>
@@ -185,7 +186,7 @@ const HomeLeak = () => {
           <div className="container">
             <h2 className="final-h2">{c.final_cta.heading}</h2>
             <p className="final-p">{c.final_cta.body}</p>
-            <Link to={c.final_cta.cta_href} className="btn-gold">{c.final_cta.cta_label}</Link>
+            <a href={assessmentHref(c.final_cta.cta_href)} className="btn-gold">{c.final_cta.cta_label}</a>
           </div>
         </section>
 
